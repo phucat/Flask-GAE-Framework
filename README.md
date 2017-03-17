@@ -1,13 +1,15 @@
 #Flask - GAE Boilerplate
 
-The Goal is to quickly and easily implement a framework that contains all necessary structures configurations and automation designed for Google Appengine and Bitbucket pipelines for rapid development.
+The Goal is to quickly and easily implement a backend framework that contains all necessary structures configurations and automation designed for Google Appengine and Bitbucket pipelines for rapid development.
 
 ## Directory Structure
 - root/
 - - app/ (contains all project related codes)
 - - - components/ (contains classes that is used across modules)
 - - - modules/ (contains blueprint, model and module related services)
-- - - services/ (containes services that are used across modules)
+- - - services/ (contains services that are used across modules)
+- - exceptions.py (should contain all custom exception used in the project)
+- - util.py (contains snippets or methods that is used across classes)
 - - configurations/ (configuration files for each environment)
 - - tests/ (contains test files)
 - - tools/ (contains scripts or tools to help on development)
@@ -70,3 +72,9 @@ Restart your terminal
 On the project's root directory, type:
 > ./update-commons.sh
 
+
+## TODOS
+- implement sample components
+- implement sample service
+- implement serving frontend files
+- implement using Cloud SQL / Cloud Storage etc ..

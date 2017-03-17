@@ -1,22 +1,19 @@
 import logging
 
-from flask import request
-from flask_autodoc.autodoc import Autodoc
-from flask import Flask, jsonify
-
 from app.exceptions import CustomException
-from configurations.config import _is_app_spot
-
-from configurations.config import _is_testbed
+from app.modules.guestbook.guestbook_api import guestbook
+from app.modules.helloworld.hello_word_api import hello_world
+from core.config import _is_app_spot
+from core.config import _is_testbed
+from flask import Flask, jsonify
+from flask import request
 
 app = Flask(__name__)
-auto = Autodoc(app)
 
 app.config.update(DEBUG=(not _is_app_spot() or _is_testbed()))
 
-
-#app.register_blueprint(jml_queue)
-
+app.register_blueprint(hello_world)
+app.register_blueprint(guestbook)
 
 
 @app.before_request
