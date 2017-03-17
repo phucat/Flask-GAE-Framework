@@ -7,6 +7,7 @@ import logging
 from google.appengine.api import users, urlfetch
 
 from core.config import _is_app_spot, _is_testbed, Config
+from core.json_utils import stringify
 from flask import request, Response, g
 from oauth2client import client, crypt
 
@@ -25,7 +26,7 @@ def set_current_user_email(user_email):
 
 
 def create_json_response(response, status=200):
-    return Response(response=json.dumps(response), status=status, mimetype='application/json')
+    return Response(response=stringify(response), status=status, mimetype='application/json')
 
 
 def str_to_date(date_as_string):

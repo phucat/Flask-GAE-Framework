@@ -8,3 +8,10 @@ class GuestBookModel(BasicModel):
     @classmethod
     def get_all(cls):
         return cls.query().fetch()
+
+    @classmethod
+    def create(cls, email):
+        gb = GuestBookModel()
+        gb.name = email
+        gb.put()
+        return gb
