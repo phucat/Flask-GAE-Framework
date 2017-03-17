@@ -13,4 +13,5 @@ def api_list():
 @guestbook.route('/create/<email>', methods=['GET'])
 def api_create(email):
     gb = GuestBookModel.create(email)
-    return gb.key.urlsafe()
+
+    return create_json_response(gb)

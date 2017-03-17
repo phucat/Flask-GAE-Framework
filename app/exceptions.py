@@ -24,3 +24,10 @@ class SampleException(CustomException):
         self.status_code = 200
         self.error_code = 'S002'
         self.message = "Missing data for employee with id %s" % employee_id
+
+
+class EmailAlreadyExistException(CustomException):
+    def __init__(self):
+        self.status_code = 500
+        self.error_code = 'S002'
+        self.message = "Email already exist"
