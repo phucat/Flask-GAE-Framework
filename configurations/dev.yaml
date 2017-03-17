@@ -1,0 +1,3 @@
+env_variables:
+  GOOGLE_DOMAIN: 'sherpatest.com'
+  AUDIT_SERVICE_ERROR_LOGS_ENDPOINT_URL: 'https://acn-audit-dev.appspot.com/api/audit/errors'

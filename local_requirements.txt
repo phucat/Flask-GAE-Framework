@@ -1,0 +1,14 @@
+nose
+FerrisNose
+coverage
+mock
+webapp2==2.5.2
+pyyaml==3.10
+webob==1.2.3
+werkzeug==0.11.10
+six==1.9.0
+protorpc
+pycrypto==2.6.1
+lxml==2.3.5
+requests
+#-r requirements.txt

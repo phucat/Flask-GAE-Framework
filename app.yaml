@@ -1,0 +1,56 @@
+service: default
+
+runtime: python27
+api_version: 1
+threadsafe: yes
+default_expiration: 1h
+
+
+builtins:
+- deferred: on
+- appstats: on
+
+includes:
+- env_variables.yaml
+
+libraries:
+- name: jinja2
+  version: latest
+- name: lxml
+  version: latest
+#- name: webapp2
+#  version: latest
+- name: webob
+  version: latest
+- name: ssl
+  version: latest
+- name: pycrypto
+  version: latest
+
+skip_files:
+- ^(.*/)?app\.ya?ml
+- ^(.*/)?index\.ya?ml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?.*\.scss
+- ^(.*/)?.*\.less
+- ^/docs*
+- ^/tools*
+- ^(.*/)?.*\.csv
+- ^(.*/)?.*\.txt
+- ^/venv*
+
+handlers:
+
+- url: /_ah/queue/deferred
+  script: google.appengine.ext.deferred.deferred.application
+  login: admin
+
+
+# Main script
+- url: .*
+  script: main.app
+  login: optional
