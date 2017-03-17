@@ -1,16 +1,16 @@
 #Flask - GAE Boilerplate
 
-The Goal is the quickly and easily implement a framework that contains all necessary structures configurations and automation designed for Google Appengine and Bitbucket pipelines for rapid development.
+The Goal is to quickly and easily implement a framework that contains all necessary structures configurations and automation designed for Google Appengine and Bitbucket pipelines for rapid development.
 
 ## Directory Structure
-- root
-- - app (contains all project related codes)
-- - - components (contains classes that is used across modules)
-- - - modules (contains blueprint, model and module related services)
-- - - services (containes services that are used across modules)
-- - configurations (configuration files for each environment)
-- - tests (contains test files)
-- - tools (contains scripts or tools to help on development)
+- root/
+- - app/ (contains all project related codes)
+- - - components/ (contains classes that is used across modules)
+- - - modules/ (contains blueprint, model and module related services)
+- - - services/ (containes services that are used across modules)
+- - configurations/ (configuration files for each environment)
+- - tests/ (contains test files)
+- - tools/ (contains scripts or tools to help on development)
 - - app.yaml (appengine required files that defines your service)
 - - appengine_config.py (tells appengine the path of libraries the project is using)
 - - bitbucket-pipelines (for CI automation)
@@ -33,6 +33,7 @@ On your terminal:
 virtualenv venv
 
 . venv/bin/activate
+pip install -r local_requirements.txt
 pip install -r requirements.txt -t lib
 ./update-commons.sh
 
@@ -42,6 +43,7 @@ Note: run_local.sh will also run the nosetest
 ## How to deploy
 > ./deploy [environment] [version]
 
+The [environment] value will automatically map the files inside the 'configurations' folder and will load your environment settings
 ## How to import commons library
 
 Create a **.pypirc** file and save it on your **root home directory**
