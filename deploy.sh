@@ -20,7 +20,7 @@ gitHash=`git rev-parse --short HEAD`
 version=$2
 
 if [ "$environment" = "dev" ]; then
-    projectId="acn-morri-jml-dev"
+    projectId="cs-development-playground"
     nopromote=""
 fi
 

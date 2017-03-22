@@ -1,3 +1,8 @@
+""""
+# Put here all re-usable snippets of codes that are independent to any files
+# including datetime formatters, string conversions, etc
+"""
+
 import logging
 from google.appengine.api import urlfetch
 

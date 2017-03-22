@@ -6,6 +6,7 @@ from core.ndb import BasicModel
 
 class GuestBookModel(BasicModel):
     name = ndb.StringProperty(required=True)
+    age = ndb.StringProperty()
 
     @classmethod
     def get_all(cls):

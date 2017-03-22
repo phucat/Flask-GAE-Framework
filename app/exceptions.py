@@ -1,3 +1,12 @@
+"""
+# Put here all exceptions that will be thrown by your application
+# It is recommended that an Exception should be raise on every request that does NOT satisfy the requirement of endpoint
+# eg:
+# on /api/guestbook/create if the email address already exist. the endpoint will raise EmailAlreadyExistException()
+# which will be converted automatically to json response
+"""
+
+
 class CustomException(Exception):
     status_code = 400
     payload = None
