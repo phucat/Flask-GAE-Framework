@@ -72,8 +72,20 @@ Restart your terminal
 On the project's root directory, type:
 > ./update-commons.sh
 
+## Activating specific service account on you local machine
+> gcloud auth activate-service-account [ACCOUNT] --key-file [path to json key file]
 
-## TODOS
+full example:
+>  gcloud auth activate-service-account cs-development-playground@appspot.gserviceaccount.com --key-file credentials/cs-development-playground.json
+
+https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account
+
+## To temporarily use your own user credentials, run:
+> gcloud auth application-default login
+
+https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login
+
+## TODOS|
 - implement sample components
 - implement sample service
 - implement serving frontend files
