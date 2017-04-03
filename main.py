@@ -1,7 +1,7 @@
 import logging
 
 from app.exceptions import CustomException
-from app.modules.storage.storage_api import storage
+from app.modules.gcloud_samples.gcloud_api import gcloud
 from app.modules.guestbook.guestbook_api import guestbook
 from app.modules.helloworld.hello_word_api import hello_world
 from core.config import _is_app_spot
@@ -15,7 +15,7 @@ app.config.update(DEBUG=(not _is_app_spot() or _is_testbed()))
 
 app.register_blueprint(hello_world)
 app.register_blueprint(guestbook)
-app.register_blueprint(storage)
+app.register_blueprint(gcloud)
 
 
 @app.before_request
