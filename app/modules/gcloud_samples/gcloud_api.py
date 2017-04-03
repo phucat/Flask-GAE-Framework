@@ -1,3 +1,4 @@
+from app.components.calendar import CalendarService
 from app.components.cloud_storage import CloudStorageService
 from app.components.pubsub import PubSubService
 from core.config import Config
@@ -7,6 +8,7 @@ from flask import Blueprint
 
 gcloud = Blueprint('storage', __name__, url_prefix='/gcloud')
 pubsub_service = PubSubService(topic=Config.get('PUBSUB_TOPIC'))
+calendar_service = CalendarService(email=Config.get('DELEGATED_USER'))
 
 
 @gcloud.route('/', methods=['GET'])
@@ -30,3 +32,8 @@ def api_pubsub():
     }
     pubsub_service.publish(data, {'message_type': 'INFO'})
     return "If successful, you should be able to see a new log on the cloud console"
+
+
+@gcloud.route('/calendar/create', methods=['POST'])
+def api_calendar():
+    pass

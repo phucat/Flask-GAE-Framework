@@ -2,3 +2,4 @@ env_variables:
   GOOGLE_DOMAIN: 'sherpatest.com'
   DEFAULT_BUCKET: 'cs-development--playground-flask-gae-boilerplate'
   PUBSUB_TOPIC: 'projects/cs-development-playground/topics/flask-gae-boilerplate'
+  DELEGATED_USER: 'ray.tenorio@sherpatest.com'
