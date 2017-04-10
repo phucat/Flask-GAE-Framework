@@ -15,7 +15,7 @@ class CalendarService(object):
         if self.delegated_credentials is None:
             credentials = AppAssertionCredentials(
                 'https://www.googleapis.com/auth/calendar')
-            self.delegated_credentials =credentials.create_delegated(self.delegate_user)
+            self.credentials = credentials
 
         return self.delegated_credentials
 

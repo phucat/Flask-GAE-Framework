@@ -1,6 +1,6 @@
 from flask import request
 
-from app.modules.guestbook.guestbook_model import GuestBookModel
+from app.modules.guestbook.guestbook_model import GuestBookModel, AddressModel
 from core.utils import create_json_response, ok
 from flask import Blueprint
 
@@ -18,4 +18,13 @@ def api_create():
     email = _json.get('email')
     gb = GuestBookModel.create(email)
 
+    AddressModel.add(gb.key, 'test')
+
     return create_json_response(gb)
+
+
+@guestbook.route('/addressbook/get/<guestbook_key>', methods=['GET'])
+def api_addressbook_get(guestbook_key):
+    ab =AddressModel.get_address_by_key(guestbook_key)
+
+    return create_json_response(ab)
