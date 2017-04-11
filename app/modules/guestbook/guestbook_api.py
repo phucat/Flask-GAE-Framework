@@ -18,7 +18,12 @@ def api_create():
     email = _json.get('email')
     gb = GuestBookModel.create(email)
 
-    AddressModel.add(gb.key, 'test')
+    """
+    sample of parent to child entity relationship where guestbook is parent and addressbook is child
+    """
+    AddressModel.add(gb.key, 'test1')
+    AddressModel.add(gb.key, 'test2')
+    AddressModel.add(gb.key, 'test3')
 
     return create_json_response(gb)
 

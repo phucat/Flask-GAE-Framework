@@ -8,7 +8,6 @@ from flask import Blueprint
 
 gcloud = Blueprint('storage', __name__, url_prefix='/api/gcloud')
 pubsub_service = PubSubService(topic=Config.get('PUBSUB_TOPIC'))
-calendar_service = CalendarService(email=Config.get('DELEGATED_USER'))
 
 
 @gcloud.route('/', methods=['GET'])
@@ -34,6 +33,8 @@ def api_pubsub():
     return "If successful, you should be able to see a new log on the cloud console"
 
 
-@gcloud.route('/calendar/create', methods=['GET'])
+@gcloud.route('/calendar/list', methods=['GET'])
 def api_calendar():
-    return CalendarService.create_event()
+    email = "ray.tenorio@sherpatest.com"
+    calendar_events = CalendarService.get_events(email)
+    return create_json_response(calendar_events)
