@@ -42,6 +42,11 @@ skip_files:
 - ^(.*/)?.*\.csv
 - ^(.*/)?.*\.txt
 - ^/venv*
+- ^/test*
+- ^(.*/)?.*\.coverage
+- ^(.*/)?.*\.coveragerc
+- ^(.*/)?.*\.gitignore
+- ^/.git*
 
 handlers:
 
