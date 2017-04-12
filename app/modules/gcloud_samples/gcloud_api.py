@@ -12,7 +12,7 @@ pubsub_service = PubSubService(topic=Config.get('PUBSUB_TOPIC'))
 
 @gcloud.route('/', methods=['GET'])
 def api_index():
-    return "see this source code for the sample implementation of storage and pubsub ... ";
+    return "see this source code for the sample implementation of storage, pubsub and calendar API ... "
 
 
 @gcloud.route('/storage/<content>/<filename>', methods=['GET'])
