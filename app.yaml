@@ -37,16 +37,16 @@ skip_files:
 - ^(.*/)?\..*
 - ^(.*/)?.*\.scss
 - ^(.*/)?.*\.less
-- ^/docs*
-- ^/tools*
+- ^(docs/.*)
+- ^(tools/.*)
 - ^(.*/)?.*\.csv
 - ^(.*/)?.*\.txt
-- ^/venv*
-- ^/test*
+- ^(venv/.*)
+- ^(test/.*)
 - ^(.*/)?.*\.coverage
 - ^(.*/)?.*\.coveragerc
 - ^(.*/)?.*\.gitignore
-- ^/.git*
+- ^(\.git/.*)
 
 handlers:
 

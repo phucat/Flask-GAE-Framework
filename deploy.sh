@@ -49,4 +49,4 @@ if [ "$environment" = "prod" ]; then
 fi
 
 cp configurations/${environment}.yaml env_variables.yaml
-(gcloud app deploy app.yaml --project=$projectId --version=$version $nopromote)
+(gcloud app deploy app.yaml --project=$projectId --version=$version $nopromote --verbosity=info)

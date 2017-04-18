@@ -76,7 +76,7 @@ On the project's root directory, type:
 > gcloud auth activate-service-account [ACCOUNT] --key-file [path to json key file]
 
 full example:
->  gcloud auth activate-service-account cs-development-playground@appspot.gserviceaccount.com --key-file credentials/cs-development-playground.json
+> gcloud auth activate-service-account cs-development-playground@appspot.gserviceaccount.com --key-file credentials/cs-development-playground.json
 
 https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account
 
