@@ -31,12 +31,16 @@ class CustomException(Exception):
 class SampleException(CustomException):
     def __init__(self, employee_id):
         self.status_code = 200
-        self.error_code = 'S002'
         self.message = "Missing data for employee with id %s" % employee_id
 
 
 class EmailAlreadyExistException(CustomException):
     def __init__(self):
         self.status_code = 500
-        self.error_code = 'S002'
         self.message = "Email already exist"
+
+
+class ForbiddenException(CustomException):
+    def __init__(self):
+        self.status_code = 403
+        self.message = "Forbidden"

@@ -1,29 +1,42 @@
 import logging
 
 from app.exceptions import CustomException
+from app.modules.dashboard.dashboard_api import dashboard
 from app.modules.gcloud_samples.gcloud_api import gcloud
 from app.modules.guestbook.guestbook_api import guestbook
 from app.modules.helloworld.hello_word_api import hello_world
-from core.config import _is_app_spot
+from core.auth import validate
+from core.config import _is_app_spot, Config
 from core.config import _is_testbed
 from flask import Flask, jsonify
 from flask import request
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 app.config.update(DEBUG=(not _is_app_spot() or _is_testbed()))
 
 app.register_blueprint(hello_world)
 app.register_blueprint(guestbook)
 app.register_blueprint(gcloud)
+app.register_blueprint(dashboard)
 
 
 @app.before_request
 def auth_user():
-    logging.info(request.headers)
     """
     executed before entering blueprint endpoints
     """
+
+    logging.info(request.headers)
+    """
+    here we validate every request in which the frontend uses the google sign-in API to generate the token.
+    each request should have "google_id_token" on the header with a valid value from the google api.
+
+    set CLIENT_AUTH_ENABLED to 'false' in the configuration file to disable the authentication check
+    """
+    validate(request)
 
 
 @app.errorhandler(404)

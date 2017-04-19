@@ -2,3 +2,4 @@ flask
 gunicorn
 google-api-python-client==1.5.5
 google-cloud-storage
+flask-cors

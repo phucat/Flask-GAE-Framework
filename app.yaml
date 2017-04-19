@@ -1,4 +1,4 @@
-service: guestbook-backend
+service: default
 
 runtime: python27
 api_version: 1
@@ -41,7 +41,6 @@ skip_files:
 - ^(tools/.*)
 - ^(.*/)?.*\.csv
 - ^(.*/)?.*\.txt
-- ^(venv/.*)
 - ^(test/.*)
 - ^(.*/)?.*\.coverage
 - ^(.*/)?.*\.coveragerc
@@ -54,9 +53,9 @@ handlers:
   script: google.appengine.ext.deferred.deferred.application
   login: admin
 
-#- url: /api/.*
-#  script: main.app
-#  login: required
+- url: /api/.*
+  script: main.app
+  login: optional
 
 # Main script
 - url: .*
