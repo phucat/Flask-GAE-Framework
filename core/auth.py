@@ -4,6 +4,13 @@ from app.exceptions import ForbiddenException
 from core.config import Config
 from oauth2client import client, crypt
 
+"""
+here we validate every request where the frontend uses the google sign-in API to generate the token.
+each request should have "google_id_token" on the header or in cookie with a valid value from the google api.
+
+set CLIENT_AUTH_ENABLED to 'false' in the configuration file to disable the authentication check
+"""
+
 
 def validate(request):
 
@@ -13,7 +20,10 @@ def validate(request):
         client_id = Config.get('ALLOWED_CLIENT_ID')
 
         if token is None:
-            raise ForbiddenException()
+            if 'google_id_token' not in request.cookies:
+                raise ForbiddenException()
+
+            token = request.cookies.get("google_id_token")
 
         try:
             logging.info("token: %s, client_id: %s" % (token, client_id))

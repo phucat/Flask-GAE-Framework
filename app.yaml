@@ -53,10 +53,6 @@ handlers:
   script: google.appengine.ext.deferred.deferred.application
   login: admin
 
-- url: /api/.*
-  script: main.app
-  login: optional
-
 # Main script
 - url: .*
   script: main.app
