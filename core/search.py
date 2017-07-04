@@ -14,6 +14,16 @@ def apply_search(blueprint, model, fields=None, paginate_limit=20):
     :param model: model to inject the indexing of entities
     :param fields: array of entity properties that you want to be indexed, if None, all properties will be indexed.
     :return: none
+
+    SAMPLE USAGE : 
+    my_blueprint = Blueprint('costcenter', __name__, url_prefix='/api/costcenter')
+    apply_search(blueprint=my_blueprint, model=MyModel, fields=['name', 'desc'])
+
+    then:
+    create a new record on your model, this will trigger the after_put method that will index the new entity.
+
+    then: hit the endpoint thats automatically created by this script for your blueprint
+    /api/my_blueprint/search?query=<search string>
     """
 
     @blueprint.route('/search', methods=['GET'])
@@ -72,7 +82,8 @@ def search_index(Model, paginate_limit, query_string, cursor, index=None):
                 index = 'auto_ix_%s' % Model._get_kind()
         index = search.Index(name=index)
 
-        logging.debug("Searching %s with \"%s\" and cursor %s" % (index.name, query.query_string, cursor.web_safe_string))
+        logging.debug(
+            "Searching %s with \"%s\" and cursor %s" % (index.name, query.query_string, cursor.web_safe_string))
         index_results = index.search(query)
 
         if issubclass(Model, ndb.Model):
@@ -132,7 +143,8 @@ def index(instance, only=None, exclude=None, index=None, callback=None):
         field = None
         is_text_field = False
 
-        if isinstance(instance._properties[prop_name], ndb.BlobProperty) and not isinstance(instance._properties[prop_name], (ndb.StringProperty, ndb.TextProperty)):
+        if isinstance(instance._properties[prop_name], ndb.BlobProperty) and not isinstance(
+                instance._properties[prop_name], (ndb.StringProperty, ndb.TextProperty)):
             continue
         if isinstance(val, basestring):
             count = 0
@@ -140,7 +152,7 @@ def index(instance, only=None, exclude=None, index=None, callback=None):
             iterate = True
             while iterate is True:
                 name = prop_name + "_" + str(count)
-                value = val[0:count+1]
+                value = val[0:count + 1]
                 field = search.TextField(name=name, value=value)
                 count += 1
                 if value:
@@ -174,7 +186,8 @@ def index(instance, only=None, exclude=None, index=None, callback=None):
         doc = search.Document(doc_id=str(instance.key.urlsafe()), fields=fields)
         index.put(doc)
     except:
-        logging.error("Adding model %s instance %s to the full-text index failed" % (instance.key.kind(), instance.key.id()))
+        logging.error(
+            "Adding model %s instance %s to the full-text index failed" % (instance.key.kind(), instance.key.id()))
         logging.error([(x.name, x.value) for x in fields])
 
 
