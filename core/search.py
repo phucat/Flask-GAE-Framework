@@ -14,16 +14,6 @@ def apply_search(blueprint, model, fields=None, paginate_limit=20):
     :param model: model to inject the indexing of entities
     :param fields: array of entity properties that you want to be indexed, if None, all properties will be indexed.
     :return: none
-    
-    SAMPLE USAGE : 
-    my_blueprint = Blueprint('costcenter', __name__, url_prefix='/api/costcenter')
-    apply_search(blueprint=my_blueprint, model=MyModel, fields=['name', 'desc'])
-
-    then:
-    create a new record on your model, this will trigger the after_put method that will index the new entity.
-    
-    then: hit the endpoint thats automatically created by this script for your blueprint
-    /api/my_blueprint/search?query=<search string>
     """
 
     @blueprint.route('/search', methods=['GET'])
@@ -140,11 +130,25 @@ def index(instance, only=None, exclude=None, index=None, callback=None):
 
         val = getattr(instance, prop_name)
         field = None
+        is_text_field = False
 
         if isinstance(instance._properties[prop_name], ndb.BlobProperty) and not isinstance(instance._properties[prop_name], (ndb.StringProperty, ndb.TextProperty)):
             continue
         if isinstance(val, basestring):
-            field = search.TextField(name=prop_name, value=val)
+            count = 0
+            is_text_field = True
+            iterate = True
+            while iterate is True:
+                name = prop_name + "_" + str(count)
+                value = val[0:count+1]
+                field = search.TextField(name=name, value=value)
+                count += 1
+                if value:
+                    fields[name] = field
+
+                if count > len(val):
+                    iterate = False
+
         elif isinstance(val, datetime.datetime):
             field = search.DateField(name=prop_name, value=val.date())
         elif isinstance(val, datetime.date):
@@ -159,7 +163,7 @@ def index(instance, only=None, exclude=None, index=None, callback=None):
         else:
             logging.debug('Property %s couldn\'t be added because it\'s a %s' % (prop_name, type(val)))
 
-        if field:
+        if field and not is_text_field:
             fields[prop_name] = field
 
     if callback:
