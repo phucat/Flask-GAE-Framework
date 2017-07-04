@@ -43,10 +43,14 @@ def apply_search(blueprint, model, fields=None, paginate_limit=20):
         logging.info("creating index for entity %s" % str(entity))
         index(instance, only=fields)
 
+    def inject_after_delete(instance, key):
+        unindex(instance, key)
+
     """
     inject to the model
     """
     model.after_put = inject_after_put
+    model.after_delete = inject_after_delete
 
 
 def search_index(Model, paginate_limit, query_string, cursor, index=None):
