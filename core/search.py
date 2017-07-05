@@ -8,11 +8,14 @@ from google.appengine.ext import ndb
 from core.utils import ok, create_json_response
 
 
-def apply_search(blueprint, model, fields=None, paginate_limit=20):
+def apply_search(blueprint, model, fields=None, paginate_limit=20, index_only_if=None, transformer=None):
     """    
     :param blueprint: blueprint object from Flask 
     :param model: model to inject the indexing of entities
     :param fields: array of entity properties that you want to be indexed, if None, all properties will be indexed.
+    :param transformer: function callback that can transform an entity, should return entity 
+    :param index_only_if: set of condition to be met to apply indexing
+    :param paginate_limit: default is 20
     :return: none
 
     SAMPLE USAGE : 
@@ -33,15 +36,22 @@ def apply_search(blueprint, model, fields=None, paginate_limit=20):
         """
         query_string = request.args.get('query', None)
         cursor = request.args.get('cursor', None)
-        q = search_index(model, paginate_limit=paginate_limit, query_string=query_string, cursor=cursor)
+        q = search_index(model, paginate_limit=paginate_limit, query_string=query_string, cursor=cursor, transformer=transformer)
         return create_json_response(q)
 
-    def inject_after_put(instance, entity):
+    def inject_after_put(instance, key):
         """
          dynamic creation of after_put method on assigned model
         """
-        logging.info("creating index for entity %s" % str(entity))
-        index(instance, only=fields)
+
+        if index_only_if is not None:
+            prop = index_only_if[0]
+            value = index_only_if[1]
+            entity = key.get()
+            if getattr(entity, prop) == value:
+                index(instance, only=fields)
+        else:
+            index(instance, only=fields)
 
     def inject_after_delete(instance, key):
         unindex(instance, key)
@@ -53,7 +63,7 @@ def apply_search(blueprint, model, fields=None, paginate_limit=20):
     model.after_delete = inject_after_delete
 
 
-def search_index(Model, paginate_limit, query_string, cursor, index=None):
+def search_index(Model, paginate_limit, query_string, cursor, index=None, transformer=None):
     """
     Searches using the provided index (or an automatically determine one).
 
@@ -92,7 +102,10 @@ def search_index(Model, paginate_limit, query_string, cursor, index=None):
 
         if issubclass(Model, ndb.Model):
             results = ndb.get_multi([ndb.Key(urlsafe=x.doc_id) for x in index_results])
-            results = [x for x in results if x]
+            if transformer is not None:
+                results = [transformer(x) for x in results if x]
+            else:
+                results = [x for x in results if x]
         else:
             results = Model.get([x.doc_id for x in index_results])
             Model.prefetch_references(results)
@@ -126,6 +139,7 @@ def index(instance, only=None, exclude=None, index=None, callback=None):
             index(self)
 
     """
+    logging.info("creating index for entity %s" % str(instance))
 
     if only:
         props = only
@@ -162,7 +176,7 @@ def index(instance, only=None, exclude=None, index=None, callback=None):
                 if value:
                     fields[name] = field
 
-                if count > len(val):
+                if count >= len(val):
                     iterate = False
 
         elif isinstance(val, datetime.datetime):
