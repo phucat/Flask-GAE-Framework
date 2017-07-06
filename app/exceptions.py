@@ -41,6 +41,6 @@ class EmailAlreadyExistException(CustomException):
 
 
 class ForbiddenException(CustomException):
-    def __init__(self):
+    def __init__(self, message="Forbidden"):
         self.status_code = 403
-        self.message = "Forbidden"
+        self.message = message

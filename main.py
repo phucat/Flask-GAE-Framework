@@ -5,21 +5,25 @@ from app.modules.dashboard.dashboard_api import dashboard
 from app.modules.gcloud_samples.gcloud_api import gcloud
 from app.modules.guestbook.guestbook_api import guestbook
 from app.modules.helloworld.hello_word_api import hello_world
+from app.modules.login.api import login
 from core.auth import validate
 from core.config import _is_app_spot
 from core.config import _is_testbed
 from flask import Flask, jsonify
 from flask import request
 
+from core.cross_domain import crossdomain
 
 app = Flask(__name__)
-
+app.secret_key = 'super secret key'
 app.config.update(DEBUG=(not _is_app_spot() or _is_testbed()))
 
+app.register_blueprint(login)
 app.register_blueprint(hello_world)
 app.register_blueprint(guestbook)
 app.register_blueprint(gcloud)
 app.register_blueprint(dashboard)
+
 
 
 @app.before_request
@@ -63,4 +67,10 @@ def handle_invalid_usage(error):
     logging.warn(error.message)
     response = jsonify(error.to_dict())
     response.status_code = error.status_code
+    return response
+
+
+@app.after_request
+@crossdomain(origin="*", headers='content-type, google-id-token')
+def after_request(response):
     return response

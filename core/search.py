@@ -111,9 +111,11 @@ def search_index(Model, paginate_limit, query_string, cursor, index=None, transf
             Model.prefetch_references(results)
 
         if index_results.cursor:
+            logging.info(index_results)
             response['limit'] = limit
             response['cursor'] = cursor.web_safe_string
-            response['next_cursor'] = str(index_results.cursor.web_safe_string())
+            response['query_string'] = query_string
+            response['next_cursor'] = index_results.cursor.web_safe_string
 
     except (search.Error, search.query_parser.QueryException) as e:
         results = []

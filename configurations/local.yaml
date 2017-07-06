@@ -4,7 +4,8 @@ env_variables:
   PUBSUB_TOPIC: 'projects/cs-development-playground/topics/flask-gae-boilerplate'
   DELEGATED_USER: 'ray.tenorio@sherpatest.com'
 
-  CLIENT_AUTH_ENABLED: false
+  CLIENT_AUTH_ENABLED: true
   DOMAIN_CHECK: true
-  ALLOWED_CLIENT_ID: '312312177205-ivhs9rnradi4m1hrp6dmava46sh8ajlk.apps.googleusercontent.com'
+  ALLOWED_CLIENT_ID: '312312177205-vhls018hoobr4mkplifngrg9l9083uvb.apps.googleusercontent.com'
   ALLOWED_DOMAIN: 'cloudsherpas.com, sherpatest.com, accenture.com'
+  API_AUTH_EXCEPTION: ""
