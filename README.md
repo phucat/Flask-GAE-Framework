@@ -1,6 +1,9 @@
 #Flask - GAE Boilerplate
 
-The Goal is to quickly and easily implement a backend framework that contains all necessary structures configurations and automation designed for Google Appengine and Bitbucket pipelines for rapid development.
+The Goal is to quickly and easily implement a backend service that contains all necessary structures configurations and automation designed for Google Appengine and Bitbucket pipelines for rapid development.
+
+It's the compilation of mostly used methods, approaches and techniques when developing backend in Appengine or Compute Engine.
+This is not a Flask tutorial but takes advantages and leverages the features of Flask Framework.
 
 ## System Requirements
 - python 2.7
@@ -107,6 +110,32 @@ apply_search(
 ## Auth (core.auth.py)
 A general implementation for backend authentication that is fully integrated in Flask's apis.
 See main.py and auth.py.
+
+## NDB (core.ndb.py)
+A simple NDB to BasicModel implementation that is applicable across any models you'll be using.
+It just adds some usual fields like 'created_by', 'created_date', 'modified_by' etc. and also added the after_put, before_put, after_delete, before_delete events listeners.
+
+## JSON UTILS (core.utils.py)
+Basic utility tools on writing JSON response on your endpoints which also includes the standard HTTP response codes.
+
+## Cross Domain (core.cross_domain.py)
+Cross domain helper for your endpoints.
+
+## Config (core.config.py)
+The helper to organize your environment variables.
+
+# Google Service Components Included
+## Google Directory
+basic implementation, needs improvement, TBC 
+## Google Cloud Storage
+basic implementation, needs improvement, TBC
+## Google Pubsub
+basic implementation, needs improvement, TBC
+## Google Cloud KMS
+Complete Interface when using Cloud KMS
+
+
+
 
 
 ## [OPTIONAL] How to import commons library
