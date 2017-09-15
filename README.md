@@ -5,6 +5,11 @@ The Goal is to quickly and easily implement a backend service that contains all 
 It's the compilation of mostly used methods, approaches and techniques when developing backend in Appengine or Compute Engine.
 This is not a Flask tutorial but takes advantages and leverages the features of Flask Framework.
 
+Works perfectly on Angular-Gae Boilerplate https://bitbucket.org/cloudsherpas/angular-gae-boilerplate
+But can still served as a standalone backend service. Feel free to use other frontend technologies.
+
+This is a work in progress and I encourage everyone to contribute on this project.
+
 ## System Requirements
 - python 2.7
 - vitualenv 15.0.3 or higher
@@ -190,3 +195,5 @@ https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login
 - implement sample service
 - implement serving frontend files
 - implement using Cloud SQL / Cloud Storage etc ..
+
+EVERYONE is encourage to contribute!
