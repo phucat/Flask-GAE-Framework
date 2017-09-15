@@ -37,6 +37,10 @@ root/
  |   | - dev.yaml
  |   | - qa.yaml
  |   | - prod.yaml
+ | - credentials/ (directory where service account credentials are located.)
+ |   | - qa-encrypted.json
+ |   | - dev-encrypted.json
+ |   | - prod-encrypted.json
  | - core/ (this directory contains most of the core codes used on all application
  |   | - auth.py
  |   | - config.py
@@ -46,7 +50,11 @@ root/
  |   |   | - home
  |   |   |   | - api_tests.py
  |   |   |   | - model_tests.py
- |   |   |   | - service_tests.py 
+ |   |   |   | - service_tests.py
+ |   |   | - guestbook
+ |   |   |   | - api_tests.py
+ |   |   |   | - model_tests.py
+ |   |   |   | - service_tests.py
  | - tools/ (contains scripts or tools to help on development)
  | - app.yaml (appengine required files that defines your service)
  | - appengine_config.py (tells appengine the path of libraries the project is using)
