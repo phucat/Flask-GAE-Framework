@@ -1,9 +1,7 @@
 import base64
 import json
 
-from googleapiclient import discovery
-from oauth2client.client import GoogleCredentials
-
+from core.google_cloud_components import GoogleCloudComponents
 
 class PubSubService(object):
 
@@ -15,11 +13,7 @@ class PubSubService(object):
         self._create_pubsub_service()
 
     def _create_pubsub_service(self):
-        if self._service is None:
-            credentials = GoogleCredentials.get_application_default()
-            self._service = discovery.build('pubsub', 'v1', credentials=credentials)
-
-        return self._service
+        return GoogleCloudComponents.create_service('pubsub', 'v1')
 
     def publish(self, data, attributes):
         service = self._create_pubsub_service()

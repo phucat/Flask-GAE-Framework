@@ -2,7 +2,7 @@
 function usage {
     cat << EOF
 
-<Usage>: deploy.sh <environment> [version]
+<Usage>: deploy.sh [environment] [version]
 
 Deploys this appengine application to the designated environment (dev/qa/prod).
 
@@ -48,5 +48,5 @@ if [ "$environment" = "prod" ]; then
     version="$version-$gitHash"
 fi
 
-cp configurations/${environment}.yaml env_variables.yaml
+cp $PWD/configurations/${environment}.yaml $PWD/env_variables.yaml
 (gcloud app deploy app.yaml --project=$projectId --version=$version $nopromote --verbosity=info)

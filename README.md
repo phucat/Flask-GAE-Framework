@@ -15,6 +15,7 @@ This is a work in progress and I encourage everyone to contribute on this projec
 - vitualenv 15.0.3 or higher
 - pip 9.0.1 or higher
 - setuptools
+- gcloud SDK
 
 ## Directory Structure
 ```
@@ -178,6 +179,7 @@ On the project's root directory, type:
 > ./update-commons.sh
 
 ## Activating specific service account on you local machine
+Used on deployment, access limitation, scope limitation etc.
 > gcloud auth activate-service-account [ACCOUNT] --key-file [path to json key file]
 
 full example:
@@ -186,14 +188,19 @@ full example:
 https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account
 
 ## To temporarily use your own user credentials, run:
+If running on locahost and the credentials you used is the application default service account,
+You can just do command below to give your loca lapplication with the credentials that you currently have instead of the default service account.
 > gcloud auth application-default login
 
 https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login
 
 ## TODOS|
+- implement missing google cloud services as services
+- CLI tool for the framework
+- improve existing components
 - implement sample components
 - implement sample service
 - implement serving frontend files
-- implement using Cloud SQL / Cloud Storage etc ..
+- implement using Cloud SQL
 
 EVERYONE is encourage to contribute!
