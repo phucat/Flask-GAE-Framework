@@ -20,7 +20,7 @@ This is a work in progress and I encourage everyone to contribute on this projec
 ## CLI Tool
 Firstly, install the Appengine GAE Boilerplate Framework
 ```
-souce ./install.sh
+source ./install.sh
 ```
 This will install all the libraries needed to run the framework.
 
