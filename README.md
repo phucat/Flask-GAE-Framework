@@ -17,6 +17,41 @@ This is a work in progress and I encourage everyone to contribute on this projec
 - setuptools
 - gcloud SDK
 
+## CLI Tool
+Firstly, install the Appengine GAE Boilerplate Framework
+```
+souce ./install.sh
+```
+This will install all the libraries needed to run the framework.
+
+### to run locally
+```buildoutcfg
+gae run
+```
+- By default, it will run in port 8081.
+- To modify port and other gcloud settings on running the application locally, modify **/core/bin/run_local.sh**
+- Please put all your application environment variables in **configurations/local.yaml**
+- All variables inside local.yaml will be loaded
+
+### to deploy
+```buildoutcfg
+gae deploy [environment] [version]
+```
+- any gcloud deploy modification can be done inside **/core/bin/deploy.sh**
+- by default, it will deploy app.yaml. queue.yaml index.yaml and cron.yaml
+- configurations for each environment is located under **configurations/<environment>.yaml**
+- the script will copy the selected environment yaml file and load it on the main appengine yaml file.
+
+### to activate the virtual environment again
+```buildoutcfg
+source gae activate
+```
+
+### Install new libraries
+```buildoutcfg
+gae update-libraries
+```
+
 ## Directory Structure
 ```
 root/
@@ -73,7 +108,7 @@ root/
 ```
 
 
-## How to run locally:
+#### (Alternative) How to run locally:
 On your terminal:
 ```
 virtualenv venv
@@ -85,7 +120,7 @@ pip install -r requirements.txt -t lib
 ./run_local.sh
 ```
 Note: run_local.sh will also run the nosetest
-## How to deploy
+#### (Alternative) How to deploy
 > ./deploy [environment] [version]
 
 The [environment] value will automatically map the files inside the 'configurations' folder and will load your environment settings

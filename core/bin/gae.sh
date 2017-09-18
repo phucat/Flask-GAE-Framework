@@ -16,6 +16,11 @@ deploy)
 activate)
     . gae_environment/bin/activate
     ;;
+update-libraries)
+    echo -n "Updating libraries ..."
+    pip install -r requirements.txt -t lib --upgrade
+    pip install -r local_requirements.txt --upgrade
+    ;;
 *)
     echo "invalid gae argument."
 esac
