@@ -17,7 +17,7 @@ This is a work in progress and I encourage everyone to contribute on this projec
 - setuptools
 - gcloud SDK
 
-Make sure Appengine files are located under this directory:
+Make sure Appengine libraries are located under this directory:
 ```buildoutcfg
 $HOME/google-cloud-sdk/platform/google_appengine
 ```
@@ -172,6 +172,14 @@ apply_search(
 A general implementation for backend authentication that is fully integrated in Flask's apis.
 See main.py and auth.py.
 
+#### System Defined Configuration
+For Auth to work, here are the defined variables used by the core.auth and should exist on each of your configuration files.
+- **CLIENT_AUTH_ENABLED** - if set to `false`, the backend REST will allow unauthenticated call.
+- **DOMAIN_CHECK** - if `true`, the authentication service will check the user domain if it matches domains inside ALLOWED_DOMAIN variable
+- **ALLOWED_CLIENT_ID** - comma separated list of Client IDs that will be allowed to access your REST endpoints. eg: 'id1,id2,id3'
+- **ALLOWED_DOMAIN** comma separated list of domains to be whitelisted to allow access on your endpoints.
+- **API_AUTH_EXCEPTION** - comma separated list of endpoints that will be whitelisted to allow any incoming request without authentication if CLIENT_AUTH_ENABLED is set to true.
+
 ## NDB (core.ndb.py)
 A simple NDB to BasicModel implementation that is applicable across any models you'll be using.
 It just adds some usual fields like 'created_by', 'created_date', 'modified_by' etc. and also added the after_put, before_put, after_delete, before_delete events listeners.
@@ -184,6 +192,9 @@ Cross domain helper for your endpoints.
 
 ## Config (core.config.py)
 The helper to organize your environment variables.
+
+## Tests (core.tests.py)
+Base Tests class helper for unit test writing.
 
 # Google Service Components Included
 ## Google Directory
