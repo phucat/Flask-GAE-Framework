@@ -1,4 +1,4 @@
-#Flask - GAE Boilerplate
+#Flask - GAE Framework
 
 The Goal is to quickly and easily implement a backend service that contains all necessary structures configurations and automation designed for Google Appengine and Bitbucket pipelines for rapid development.
 
@@ -17,6 +17,11 @@ This is a work in progress and I encourage everyone to contribute on this projec
 - setuptools
 - gcloud SDK
 
+Make sure Appengine files are located under this directory:
+```buildoutcfg
+$HOME/google-cloud-sdk/platform/google_appengine
+```
+eg: /home/**your-user-name**/google-cloud-sdk/platform/google_appengine
 ## CLI Tool
 Firstly, install the Appengine GAE Boilerplate Framework
 ```
@@ -33,6 +38,12 @@ gae run
 - Please put all your application environment variables in **configurations/local.yaml**
 - All variables inside local.yaml will be loaded
 
+### to run tests
+```buildoutcfg
+gae tests
+```
+This will run unit tests across all python files inside **tests** directory
+
 ### to deploy
 ```buildoutcfg
 gae deploy [environment] [version]
@@ -41,6 +52,7 @@ gae deploy [environment] [version]
 - by default, it will deploy app.yaml. queue.yaml index.yaml and cron.yaml
 - configurations for each environment is located under **configurations/<environment>.yaml**
 - the script will copy the selected environment yaml file and load it on the main appengine yaml file.
+- deploy command will automatically run tests, code coverage and code lintings.
 
 ### to activate the virtual environment again
 ```buildoutcfg

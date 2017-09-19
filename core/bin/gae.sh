@@ -16,6 +16,10 @@ deploy)
 activate)
     . gae_environment/bin/activate
     ;;
+tests)
+    . gae_environment/bin/activate
+    nosetests $PWD/tests/ --with-coverage --with-ferris --gae-sdk-path=$HOME/google-cloud-sdk/platform/google_appengine
+    ;;
 update-libraries)
     echo -n "Updating libraries ..."
     pip install -r requirements.txt -t lib --upgrade
