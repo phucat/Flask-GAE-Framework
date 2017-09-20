@@ -46,6 +46,8 @@ skip_files:
 - ^(.*/)?.*\.coveragerc
 - ^(.*/)?.*\.gitignore
 - ^(\.git/.*)
+- ^/venv*
+- ^/gae_environment*
 
 handlers:
 
