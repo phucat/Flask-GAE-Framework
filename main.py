@@ -6,7 +6,8 @@ from app.modules.gcloud_samples.gcloud_api import gcloud
 from app.modules.guestbook.guestbook_api import guestbook
 from app.modules.helloworld.hello_word_api import hello_world
 from app.modules.login.api import login
-from core.auth import validate
+from core.auth import validate_authentication_header
+
 from core.config import _is_app_spot
 from core.config import _is_testbed
 from flask import Flask, jsonify
@@ -33,7 +34,7 @@ def auth_user():
     """
 
     logging.info(request.headers)
-    validate(request)
+    validate_authentication_header(request)
 
 
 @app.after_request

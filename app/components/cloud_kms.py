@@ -16,6 +16,7 @@ cloudKMSService.encrypt('This is a test message')
 
 """
 
+
 class CloudKMSService(object):
 
     project_id = None
@@ -23,6 +24,9 @@ class CloudKMSService(object):
     keyring = None
     service = None
     block_size = 16
+
+    def testasa(self):
+            return False
 
     def __init__(self, project_id='', keyring='', cryptokey='', location='global' ):
         self.project_id = project_id
