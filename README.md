@@ -174,11 +174,11 @@ See main.py and auth.py.
 
 #### System Defined Configuration
 For Auth to work, here are the defined variables used by the core.auth and should exist on each of your configuration files.
-- **CLIENT_AUTH_ENABLED** - if set to `false`, the backend REST will allow unauthenticated call.
-- **DOMAIN_CHECK** - if `true`, the authentication service will check the user domain if it matches domains inside ALLOWED_DOMAIN variable
-- **ALLOWED_CLIENT_ID** - comma separated list of Client IDs that will be allowed to access your REST endpoints. eg: 'id1,id2,id3'
+- **CLIENT_AUTH_ENABLED** if set to `false`, the backend REST will allow unauthenticated call.
+- **DOMAIN_CHECK** if `true`, the authentication service will check the user domain if it matches domains inside ALLOWED_DOMAIN variable
+- **ALLOWED_CLIENT_ID**  comma separated list of Client IDs that will be allowed to access your REST endpoints. eg: 'id1,id2,id3'
 - **ALLOWED_DOMAIN** comma separated list of domains to be whitelisted to allow access on your endpoints.
-- **API_AUTH_EXCEPTION** - comma separated list of endpoints that will be whitelisted to allow any incoming request without authentication if CLIENT_AUTH_ENABLED is set to true.
+- **API_AUTH_EXCEPTION**  comma separated list of endpoints that will be whitelisted to allow any incoming request without authentication if CLIENT_AUTH_ENABLED is set to true.
 
 ## NDB (core.ndb.py)
 A simple NDB to BasicModel implementation that is applicable across any models you'll be using.
