@@ -173,7 +173,8 @@ A general implementation for backend authentication that is fully integrated in 
 See main.py and auth.py.
 
 #### System Defined Configuration
-For Auth to work, here are the defined variables used by the core.auth and should exist on each of your configuration files.
+#####For Auth to work, here are the defined variables used by the core.auth and should exist on each of your configuration files.
+
 - **CLIENT_AUTH_ENABLED** if set to `false`, the backend REST will allow unauthenticated call.
 - **DOMAIN_CHECK** if `true`, the authentication service will check the user domain if it matches domains inside ALLOWED_DOMAIN variable
 - **ALLOWED_CLIENT_ID**  comma separated list of Client IDs that will be allowed to access your REST endpoints. eg: 'id1,id2,id3'
