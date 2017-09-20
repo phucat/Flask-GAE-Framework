@@ -38,6 +38,8 @@ gae run
 - Please put all your application environment variables in **configurations/local.yaml**
 - All variables inside local.yaml will be loaded
 
+** NOTE:** if you have closed the terminal after a sweet vacation and want to re-run your application again, activate the environment first by running
+** source gae activate **
 ### to run tests
 ```buildoutcfg
 gae tests
