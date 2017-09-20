@@ -1,10 +1,5 @@
-import base64
-
-import googleapiclient
-from googleapiclient import discovery
-from oauth2client.client import GoogleCredentials
-
 """
+author: Ray
 USAGE:
 cloudKMSService = CloudKMSService(
     project_id=Config.get('PROJECT_ID'),
@@ -15,6 +10,9 @@ cloudKMSService = CloudKMSService(
 cloudKMSService.encrypt('This is a test message')
 
 """
+import base64
+from googleapiclient import discovery
+from oauth2client.client import GoogleCredentials
 
 
 class CloudKMSService(object):
@@ -24,9 +22,6 @@ class CloudKMSService(object):
     keyring = None
     service = None
     block_size = 16
-
-    def testasa(self):
-            return False
 
     def __init__(self, project_id='', keyring='', cryptokey='', location='global' ):
         self.project_id = project_id

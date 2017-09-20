@@ -207,7 +207,11 @@ basic implementation, needs improvement, TBC
 ## Google Pubsub
 basic implementation, needs improvement, TBC
 ## Google Cloud KMS
-Complete Interface when using Cloud KMS
+A full pledge python interface for Google Cloud KMS REST API
+#### create_keyring
+#### create_cryptokey
+#### encrypt(string)
+#### decrypt(string)
 
 
 
