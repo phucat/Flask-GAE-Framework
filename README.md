@@ -1,4 +1,4 @@
-#Flask - GAE Framework
+# Flask - GAE Framework
 
 The Goal is to quickly and easily implement a backend service that contains all necessary structures configurations and automation designed for Google Appengine and Bitbucket pipelines for rapid development.
 
